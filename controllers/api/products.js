@@ -3,7 +3,8 @@ const Product = require('../../models/Product');
 module.exports = {
     index,
     show,
-    create
+    create,
+    update
 };
 
 async function index(req, res) {
@@ -19,4 +20,9 @@ async function show(req, res) {
 async function create(req, res) {
     const product = await Product.create(req.body);
     res.status(201).json(product);
+}
+
+async function update(req, res) {
+    const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    res.status(200).json(updatedProduct);
 }

@@ -8,8 +8,8 @@ import {Route, Link, NavLink, Switch, Redirect} from 'react-router-dom';
 import * as productAPI from '../../utils/productService';
 import AddProductPage from '../../pages/AddProductPage/AddProductPage';
 import ProductListPage from '../../pages/ProductListPage/ProductListPage';
+import EditProductPage from '../../pages/EditProductPage/EditProductPage';
 import ProductDetailPage from '../../pages/ProductDetailPage/ProductDetailPage';
-// import EditProductPage from '../../pages/EditProductPage/EditProductPage';
 //Seller LOGIN and SIGN-IN
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
@@ -34,6 +34,19 @@ class App extends Component {
       () => this.props.history.push("/")
     );
   };
+
+  handleUpdateProduct = async (updatedItemData) => {
+    const updatedProduct = await productAPI.update(updatedItemData);
+    //Using map to replace just the product that was updated
+    const newProductsArray = this.state.products.map((p) =>
+      p._id === updatedProduct._id ? updatedProduct : p
+    );
+    this.setState(
+      {products: newProductsArray},
+      //cb runs after update of state
+      () => this.props.history.push("/")
+    )
+  }
 
   handleDeleteProduct = async (id) => {
     await productAPI.deleteOne(id);
@@ -113,6 +126,12 @@ class App extends Component {
             <Route exact path="/add" render={() => (
               <AddProductPage
               handleAddProduct={this.handleAddProduct} />
+            )}/>
+            <Route exact path="/edit" render={({location}) => (
+              <EditProductPage
+              handleUpdateProduct={this.handleUpdateProduct}
+              location = { location }
+              />
             )}/>
             <Route exact path="/details" render={({ location }) =>
               <ProductDetailPage location={location}/>}
