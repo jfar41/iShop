@@ -133,9 +133,6 @@ export function unregister() {
     navigator.serviceWorker.ready
       .then(registration => {
         registration.unregister();
-      })
-      .catch(error => {
-        console.error(error.message);
       });
   }
 }

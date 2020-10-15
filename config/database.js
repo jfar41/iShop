@@ -1,14 +1,16 @@
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
-mongoose.connect(process.env.DATABASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-});
+mongoose.connect(
+    'mongodb://localhost:27017/products',
+    {   useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false
+    }
+);
 
-const db = mongoose.connection;
+var db = mongoose.connection;
 
-db.once('connected', () => {
+db.on('connected', () => {
     console.log(`Connceted to MongoDB ${db.name} at ${db.host}:${db.port}`)
 })
