@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import {logo} from '../../logo.svg';
 import {Route, Link, NavLink, Switch, Redirect} from 'react-router-dom';
 //importing Switch allows us to make paths exclusive rather than inclusive
 //Switch renders only first route that matches the location
@@ -83,36 +84,44 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          iShop
-          <nav>
+          <img src="https://icon-library.com/images/shopping-cart-icon-vector/shopping-cart-icon-vector-23.jpg" className="App-logo"/>
+          <h1 className="App-title">iShop</h1>
+        </header>
+          <nav className="menu">
             {this.state.user ? (
-              <>
-                <NavLink exact to="/">
+              <ul>
+                <li>
+                  <NavLink exact to="/">
                   Products Listed
-                </NavLink>
-                &nbsp;&nbsp;&nbsp;
-                <NavLink exact to="/add">
-                  ADD ITEM
-                </NavLink>
-                &nbsp;&nbsp;&nbsp;    
-                <Link to="" onClick={this.handleLogout} >
-                  LOGOUT
-                </Link>
-                &nbsp;&nbsp;&nbsp;
-              </>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink exact to="/add">
+                    ADD ITEM
+                  </NavLink>
+                </li>
+                <li>  
+                  <Link to="" onClick={this.handleLogout} >
+                    LOGOUT
+                  </Link>
+                </li>
+              </ul>
             ) : (
-              <>
+              <ul>
+                <li>
                 <NavLink exact to="/login">
                   LOGIN
                 </NavLink>
+                </li>
                 &nbsp;&nbsp;&nbsp;
+                <li>
                 <NavLink exact to="/signup">
                   SIGN UP
                 </NavLink>
-              </>
+                </li>
+              </ul>
             )}
           </nav>
-        </header>
         <main>
           {this.state.user ? <h2>Welcome, {this.state.user.name}</h2> : <h2>You are not logged in!</h2>}
           <Switch>

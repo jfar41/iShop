@@ -1,28 +1,47 @@
 .App {
-  min-height: 100vh;
-  display: grid;
-  grid-template-rows: 7vmin auto;
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 2s linear;
+  height: 80px;
 }
 
 .App-header {
-  background-color: var(--black);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2vmin;
-  font-size: 2.5vmin;
-  color: var(--background);
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white
 }
 
-.App main {
-  background-color: rgb(194, 194, 199);
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
+.App-title {
+  font-size: 1.5 em;
 }
 
-.App main h1 {
-  color: var(--secondary-dark);
-  margin-bottom: 5vmin;
+.App-intro {
+  font-size: large;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul {
+  background-color: #222;
+  margin: 0;
+}
+
+.menu li {
+  font-family: sans-serif;
+  font-size: 1.2em;
+  line-height: 40px;
+  height: 40px;
+  border-bottom: 1px solid #888;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
 }
