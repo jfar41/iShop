@@ -92,12 +92,12 @@ class App extends Component {
               <ul>
                 <li>
                   <NavLink exact to="/">
-                  Products Listed
+                  YOUR PRODUCTS
                   </NavLink>
                 </li>
                 <li>
                   <NavLink exact to="/add">
-                    ADD ITEM
+                    ADD PRODUCT
                   </NavLink>
                 </li>
                 <li>  
@@ -126,11 +126,14 @@ class App extends Component {
           {this.state.user ? <h2>Welcome, {this.state.user.name}</h2> : <h2>You are not logged in!</h2>}
           <Switch>
             <Route exact path="/" render={()=> (
+              userService.getUser() ?
               <ProductListPage
               user={this.state.user}
               products={this.state.products}
               handleDeleteProduct={this.handleDeleteProduct}
               />
+              :
+              <Redirect to ="/login" />
             )}/>
             <Route exact path="/add" render={() => (
               userService.getUser() ?
@@ -140,14 +143,21 @@ class App extends Component {
               <Redirect to='/login' />
             )}/>
             <Route exact path="/edit" render={({location}) => (
+              userService.getUser() ?
               <EditProductPage
               handleUpdateProduct={this.handleUpdateProduct}
               location = { location }
               /> 
+              :
+              <Redirect to="/login" />
             )}
             />
-            <Route exact path="/details" render={({ location }) =>
-              <ProductDetailPage location={location}/>}
+            <Route exact path="/details" render={({ location }) =>(
+              userService.getUser() ?
+              <ProductDetailPage location={location}/>
+              :
+              <Redirect to="/login" />
+              )}
             />
             <Route exact path = "/signup" render={({history})=>(
               <SignupPage
@@ -161,7 +171,7 @@ class App extends Component {
               handleSignupOrLogin={this.handleSignupOrLogin}
             />
             )}/>
-           
+            <Redirect to="/login"/>
           </Switch>
         </main>
       </div>
