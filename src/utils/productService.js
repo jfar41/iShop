@@ -1,3 +1,4 @@
+import tokenService from './tokenService';
 const BASE_URL = '/api/products';
 
 export function getAll() {
@@ -8,7 +9,10 @@ export function getAll() {
 export function create(item) {
     return fetch(BASE_URL, {
         method: 'POST',
-        headers: {'content-type': 'application/json'},
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        },
         body: JSON.stringify(item)
     }).then(res => res.json());
 }
