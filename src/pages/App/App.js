@@ -85,7 +85,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src="https://icon-library.com/images/shopping-cart-icon-vector/shopping-cart-icon-vector-23.jpg" className="App-logo"/>
-          <h1 className="App-title">iShop</h1>
+          <h1 className="App-title">iShopMed</h1>
         </header>
           <nav className="menu">
             {this.state.user ? (
