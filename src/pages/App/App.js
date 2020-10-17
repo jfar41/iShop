@@ -133,15 +133,19 @@ class App extends Component {
               />
             )}/>
             <Route exact path="/add" render={() => (
+              userService.getUser() ?
               <AddProductPage
               handleAddProduct={this.handleAddProduct} />
+              :
+              <Redirect to='/login' />
             )}/>
             <Route exact path="/edit" render={({location}) => (
               <EditProductPage
               handleUpdateProduct={this.handleUpdateProduct}
               location = { location }
-              />
-            )}/>
+              /> 
+            )}
+            />
             <Route exact path="/details" render={({ location }) =>
               <ProductDetailPage location={location}/>}
             />
@@ -157,7 +161,7 @@ class App extends Component {
               handleSignupOrLogin={this.handleSignupOrLogin}
             />
             )}/>
-            <Redirect to="/"/>
+           
           </Switch>
         </main>
       </div>
