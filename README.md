@@ -1,3 +1,32 @@
+# iShopMed
+### iShopMed is a craiglist mock that connects sellers and buyers with one commonality - medicine. Join a community where you can search up products by name, category, etc. 
+
+## Screenshots
+![Picture of sign up](https://i.imgur.com/72w6khz.png)
+![Picture of local library](https://i.imgur.com/5jLZRBi.png)
+![Picture of add page](https://i.imgur.com/P9SAZm8.png)
+![Picture of edit page](https://i.imgur.com/GitKMK5.png)
+![Picture of ERD](https://i.imgur.com/JRBEdco.png)
+
+# Technolgies Used:
+##### Javascript, HTML, CSS, Express.js, MongoDB, Mongoose, React, Postman, Heroku
+
+## Getting Started: 
+#### https://ishopreact.herokuapp.com/login
+#### https://trello.com/b/nYkTZtu4/ishop
+
+## NEXT STEPS:
+* I want to create drop downs for product category & specialty
+* Show most recent postings; newest at top and oldest towards bottom
+* Have search bar that listens to key terms and can search by category & specialty as well
+* Have profile for sellers and buyers
+* Have socket.io implemented so sellers can communicate with buyers
+* Restrict CRUD to individual sellers (with local list)
+* Have a global list that shows all products to all visitors of the site
+* Ability to add pictures to products
+* Ability to review a seller
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
