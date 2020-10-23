@@ -6,7 +6,6 @@ import {Route, Link, NavLink, Switch, Redirect} from 'react-router-dom';
 //Switch renders only first route that matches the location
 //Route, Link, NavLink, Switch, & Redirect are all components
 
-import * as productAPI from '../../utils/productService';
 import AddProductPage from '../../pages/AddProductPage/AddProductPage';
 import ProductListPage from '../../pages/ProductListPage/ProductListPage';
 import EditProductPage from '../../pages/EditProductPage/EditProductPage';
@@ -15,12 +14,17 @@ import ProductDetailPage from '../../pages/ProductDetailPage/ProductDetailPage';
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
 import userService from "../../utils/userService";
+import productService from "../../utils/productService";
+import * as productAPI from '../../utils/productService';
 
 
 class App extends Component {
-  state = {
-    products: [],
-    user: userService.getUser(),
+  constructor() {
+    super();
+    this.state = {
+      products: [],
+      user: userService.getUser(),
+    };
   }
 
 
@@ -61,9 +65,10 @@ class App extends Component {
   };
 
   /*--- User Auth ---*/
-  handleSignupOrLogin = () => {
+  handleSignupOrLogin = async () => {
     this.setState({
       user: userService.getUser(),
+      products: await productService.getAll()
     });
     console.log(this.state.user);
   };

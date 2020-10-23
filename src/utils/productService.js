@@ -2,8 +2,11 @@ import tokenService from './tokenService';
 const BASE_URL = '/api/products';
 
 export function getAll() {
-    return fetch(BASE_URL)
-    .then(res => res.json());
+    return fetch(BASE_URL, {
+        headers: {
+            'Authorization': 'Bearer ' + tokenService.getToken()
+        },
+    }).then(res => res.json());
 }
 
 export function create(item) {
@@ -31,3 +34,9 @@ export function deleteOne(id) {
     }).then(res => res.json());
 }
 
+export default {
+    getAll,
+    create,
+    update,
+    deleteOne
+}

@@ -9,7 +9,7 @@ module.exports = {
 };
 
 async function index(req, res) {
-    const products = await Product.find({});
+    const products = await Product.find({owner: req.user._id});
     res.status(200).json(products);
 }
 
@@ -19,6 +19,7 @@ async function show(req, res) {
 }
 
 async function create(req, res) {
+    req.body.owner = req.user._id
     const product = await Product.create(req.body);
     res.status(201).json(product);
 }

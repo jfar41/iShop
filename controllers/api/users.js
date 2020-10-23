@@ -38,6 +38,7 @@ async function login(req, res) {
 /*---Helper Functions---*/
 function createJWT(user) {
     return jwt.sign(
+        //we're serializing our user. in order to do so tho, we need a secret
         {user},
         SECRET,
         {expiresIn: '1h'}

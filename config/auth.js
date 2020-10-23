@@ -6,6 +6,7 @@ module.exports = function (req, res, next) {
     if (token) {
         //remove the bearer(a token) if it was included in the Authorization header
         //when making requests to protected resources
+        //replace is a string method that is used with regular expressions to remove Bearer in this case
         token = token.replace('Bearer ', '');
         //jwt.sign(payload, secretOrPrivateKey, [options, callback])
         jwt.verify(token, SECRET, function(err, decoded) {

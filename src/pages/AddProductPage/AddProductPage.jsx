@@ -27,7 +27,7 @@ class AddProductPage extends Component {
         });
     };
 
-    render() {
+    render(props) {
         return (
             <>
                 <h1>Add Product</h1>

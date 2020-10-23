@@ -19,6 +19,7 @@ app.use(cors());
 //Mount and configure both serve-favicon & static middleware 
 //so that they serve from the build(production-ready) folder
 app.use(logger('dev'));
+//Ensures we support JSON-encoded bodies
 app.use(express.json());
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));

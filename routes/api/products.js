@@ -2,12 +2,13 @@ var express = require('express');
 var router = express.Router();
 var productsCtrl = require('../../controllers/api/products');
 
+router.use(require('../../config/auth'));
 /* GET /api/puppies */
-router.get('/', productsCtrl.index);
-router.get('/:id', productsCtrl.show);
-router.post('/', checkAuth, productsCtrl.create);
+router.get('/', checkAuth, productsCtrl.index);
+router.get('/:id', checkAuth, productsCtrl.show);
+router.post('/', productsCtrl.create);
 router.put('/:id', productsCtrl.update);
-router.delete('/:id', productsCtrl.delete);
+router.delete('/:id', checkAuth, productsCtrl.delete);
 
 /*--- Helper Functions ---*/
 function checkAuth(req, res, next) {

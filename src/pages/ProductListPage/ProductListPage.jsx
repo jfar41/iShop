@@ -5,7 +5,7 @@ import ProductListItem from '../../components/ProductListItem/ProductListItem';
 function ProductListPage(props) {
     return(
         <>
-            {!props.user ? (
+            {!props.user || !props.products.length ? (
                 <></>
             ) : (
                 <>

@@ -3,24 +3,19 @@ import tokenService from "./tokenService"
 const BASE_URL = '/api/users/';
 
 function signup(user) {
-    return (
-        fetch(BASE_URL + "signup", {
-            method: "POST",
-            headers: new Headers({
-                "Content-Type": "application/json",
-            }),
-            body: JSON.stringify(user),
+    return fetch(BASE_URL + "signup", {
+        method: "POST",
+        headers: new Headers({
+            "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(user),
         })
-        .then((res) => {
-            if (res.ok) res.json();
+        .then(res => {
+            if (res.ok) return res.json();
             throw new Error('Email already taken!');
         })
         //Parameter destructuring
-        .then(({ token }) => {
-            console.log(token);
-            tokenService.setToken(token);
-        })
-    );
+        .then(({ token }) => tokenService.setToken(token));
 }
 
 function getUser() {
@@ -34,12 +29,10 @@ function logout() {
 function login(creds) {
     return fetch(BASE_URL + "login", {
         method: "POST",
-        headers: new Headers({
-            "Content-Type": "application/json",
-        }),
-        body: JSON.stringify(creds),
+        headers: new Headers({"Content-Type": "application/json"}),
+        body: JSON.stringify(creds)
     })
-    .then((res) => {
+    .then(res => {
         if (res.ok) return res.json();
         throw new Error("Bad Credentials");
     })
