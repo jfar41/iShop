@@ -8,7 +8,7 @@ router.get('/', checkAuth, productsCtrl.index);
 router.get('/:id', checkAuth, productsCtrl.show);
 router.post('/', productsCtrl.create);
 router.put('/:id', productsCtrl.update);
-router.delete('/:id', checkAuth, productsCtrl.delete);
+router.delete('/:id',  productsCtrl.delete);
 
 /*--- Helper Functions ---*/
 function checkAuth(req, res, next) {
